@@ -20,3 +20,12 @@ Poi per attivare/disattivare la VirtualEnv utilizzare i comandi:
 conda activate DeskApp
 conda deactivate
 
+Nella VirtualEnv installiamo Pyside con il comando:
+pip install PySide6
+
+per creare la documentazione:
+pip freeze > requirement.txt
+
+per creare un ambiente di sviluppo standard, cioè come memorizzato nel file di documentazione:
+
+pip install -r requirements.txt
