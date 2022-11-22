@@ -2,7 +2,8 @@
 Utility per gestire, rinominare e indicizzare file
 
 # Installazione
-Ecoo la procedura per prepparare l'ambiente di sviluppo.
+
+Ecco la procedura per preparare l'ambiente di sviluppo.
 
 Intanto dobbiamo installare miniconda:
 https://conda.io/projects/conda/en/stable/user-guide/install/download.html
