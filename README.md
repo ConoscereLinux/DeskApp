@@ -34,7 +34,7 @@ conda activate DeskApp
 
 ## Requisiti
 
-Per installare tutte le librerie di Python richieste useremo direttamente *pip*. Entare nella cartella ```src``` e digitare il seguente comando:
+Per installare tutte le librerie di Python richieste useremo direttamente *pip*. Entrare nella cartella ```src``` e digitare il seguente comando:
 
 ```bash
 pip install -r requirements.txt
