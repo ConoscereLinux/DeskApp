@@ -11,7 +11,7 @@ Per poter lavorare al progetto, occorre preparare un ambiente di sviuluppo, e pe
 Per installare miniconda, seguire la guida di riferimento:
 [Installation - conda 22.9.0 documentation](https://conda.io/projects/conda/en/stable/user-guide/install/index.html)
 
-Qui, invece, la pagina per il download deigli installer:
+Qui, invece, la pagina per il download degli installer:
 [Miniconda - conda documentation](https://docs.conda.io/en/latest/miniconda.html)
 
 Per creare la *virtualenv* con Miniconda, da riga di comando:
