@@ -1,4 +1,4 @@
-"""Modulo per parsare a riga di comando"""
+"""Modulo per effettuare parser a riga di comando"""
 
 
 # Standard Import
@@ -21,16 +21,10 @@ class Request:
     """definizione di un metodo che visualizza i file presenti nella directory"""
     def view(self):
         os.getcwd() # ci si posiziona nella directory corrente
+        os.chdir("Source") # ci si sposta nella cartella 'Source'
         print(os.listdir()) # visualizza i file e cartelle nella directory corrente
         
 #creazione dell'istanza della classe e chiamata del metodo view
+req = input("Inserisci il criterio di scelta ")
 objExt = Request(req)
 objExt.view()
-
-
-
-
-
-            
-
-      
