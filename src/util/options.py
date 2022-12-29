@@ -22,13 +22,14 @@ class Request:
         for cartelle, sottocartelle, files in os.walk(os.getcwd()): """ funzione che ottiene la lista delle cartelle, sottocartelle e files 
                                                                         presenti nel filesystem""" 
         for file in files: #scorrimento della lista dei files per confronto con estensione richiesta
-            if file.endswith('.txt'): #condizione di confronto estensioni
-                print(file) #stampa lista file con estensione richiesta
-
+            if file.endswith(self.extension): """ questa funzione rende vera la condizione solo per la stampa a video 
+                                                  dei file con estensione che corrisponde a self.extension""" 
+            print(file) #stampa lista file con estensione richiesta
+            
         # riga commentata creata per mie esigenze che non deve essere presa in considerazione
         # print(os.listdir()) # visualizza i file e cartelle nella directory corrente
         
 #creazione dell'istanza della classe e chiamata del metodo view
 req = input("Inserisci l'estensione dei file da ricercare(.ext) ")
-objExt = Request(req)
-objExt.view()
+objExt = Request(req) #creazione di un istanza della classe Request
+objExt.view() # chiamata del metodo di visualizzazione dei file nel filesystem
