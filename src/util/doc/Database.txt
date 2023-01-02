@@ -1,0 +1,17 @@
+Original name: 20221209_215959.jpg
+Deskapp name: image2.jpg
+Make: samsung
+Model: SM-A528B
+Software: A528BXXS1CVI6
+Artist: None
+DateTime (Original): 2022:12:09 21:59:59
+Flash Details: Flash(flash_fired=False, flash_return=FlashReturn.NO_STROBE_RETURN_DETECTION_FUNCTION, flash_mode=FlashMode.UNKNOWN, flash_function_not_present=False, red_eye_reduction_supported=False, reserved=0)
+ Longitude data: None
+ latitude data: None
+ Longitude data reference : None
+ latitude data reference : None
+Larghezza: 4624
+Altezza: 3468
+Risoluzione: 72.0
+Dimensione file (in byte): 4125360
+
