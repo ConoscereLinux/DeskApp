@@ -9,6 +9,7 @@ import time
 # settaggio variabili
 listOfImage = 0
 listOfScanned = 0
+counter = 1
 
 # scansione cartelle per verificare presenza file
 
