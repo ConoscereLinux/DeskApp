@@ -17,14 +17,15 @@ class Request:
 
     """definizione di un metodo che visualizza i file presenti nella directory"""
     def view(self):
-        os.getcwd() # ci si posiziona nella directory corrente
+        # os.getcwd() ci si posiziona nella directory corrente
         os.chdir("Source") # ci si sposta nella cartella 'Source'
         for cartelle, sottocartelle, files in os.walk(os.getcwd()): """ funzione che ottiene la lista delle cartelle, sottocartelle e files 
                                                                         presenti nel filesystem""" 
         for file in files: #scorrimento della lista dei files per confronto con estensione richiesta
-            if file.endswith(self.extension): """ questa funzione rende vera la condizione solo per la stampa a video 
-                                                  dei file con estensione che corrisponde a self.extension""" 
-            print(file) #stampa lista file con estensione richiesta
+                """ questa funzione rende vera la condizione solo per la stampa a video 
+                    dei file con estensione che corrisponde a self.extension"""
+                if file.endswith(self.extension): 
+                    print(file) #stampa lista file con estensione richiesta
             
         # riga commentata creata per mie esigenze che non deve essere presa in considerazione
         # print(os.listdir()) # visualizza i file e cartelle nella directory corrente
