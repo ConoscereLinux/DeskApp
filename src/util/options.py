@@ -26,12 +26,12 @@ class Request:
                     dei file con estensione che corrisponde a self.extension """
                 if file.endswith(self.extension): 
                     print(file) #stampa lista file con estensione richiesta
+                # se la stringa 'self.extension' coincide con il nome del o dei files allora """
+                elif self.extension == file[:-3]: # esclude l'estensione del file (.ext) dalla ricerca
+                    print(file) # stampa il o i files corrispondenti trovati
                 else:
-                    """ se la stringa 'self.extension' coincide con il nome del o dei files allora """
-                    if self.extension == file[:-3]:
-                        print(file) # stampa il o i files corrispondenti trovati
-                    
-                    
+                    print("La corrispondenza non è stata realizzata")
+                    break                    
 #creazione dell'istanza della classe e chiamata del metodo view
 req = input("Inserisci l'estensione dei file da ricercare(.ext) ")
 objExt = Request(req) #creazione di un istanza della classe Request
