@@ -17,19 +17,21 @@ class Request:
 
     """definizione di un metodo che visualizza i file presenti nella directory"""
     def view(self):
-        # os.getcwd() ci si posiziona nella directory corrente
+        listFiles = os.listdir("Source")
         os.chdir("Source") # ci si sposta nella cartella 'Source'
         for cartelle, sottocartelle, files in os.walk(os.getcwd()): """ funzione che ottiene la lista delle cartelle, sottocartelle e files 
                                                                         presenti nel filesystem""" 
         for file in files: #scorrimento della lista dei files per confronto con estensione richiesta
                 """ questa funzione rende vera la condizione solo per la stampa a video 
-                    dei file con estensione che corrisponde a self.extension"""
+                    dei file con estensione che corrisponde a self.extension """
                 if file.endswith(self.extension): 
                     print(file) #stampa lista file con estensione richiesta
-            
-        # riga commentata creata per mie esigenze che non deve essere presa in considerazione
-        # print(os.listdir()) # visualizza i file e cartelle nella directory corrente
-        
+                else:
+                    """ se la stringa 'self.extension' coincide con il nome del o dei files allora """
+                    if self.extension == file[:-3]:
+                        print(file) # stampa il o i files corrispondenti trovati
+                    
+                    
 #creazione dell'istanza della classe e chiamata del metodo view
 req = input("Inserisci l'estensione dei file da ricercare(.ext) ")
 objExt = Request(req) #creazione di un istanza della classe Request
