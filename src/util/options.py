@@ -13,8 +13,9 @@ import re
 """Creo una classe Request dove l'utente indica il criterio di ricerca
 in base all'estensione dei file presenti in una cartella"""
 class Request:
-    def __init__(self, ext): 
-        self.extension = ext
+    def __init__(self, word): 
+        self.word = word
+        self.sizeWord = len(self.word)
 
     """definizione di un metodo che visualizza i file presenti nella directory"""
     def view(self):
@@ -25,9 +26,9 @@ class Request:
             # presenti nel filesystem
             for file in files: #scorrimento della lista dei files per confronto con estensione richiesta
                 # print("confronto ",self.extension == file[:-4])
-                if file.endswith(self.extension): 
+                if file.endswith(self.word): 
                     print(file)    
-                elif self.extension == file[:-4]: 
+                elif self.word == file[:self.sizeWord]: 
                     print(file)
 #creazione dell'istanza della classe e chiamata del metodo view
 req = input("Inserisci l'estensione dei file da ricercare(.ext) ")
