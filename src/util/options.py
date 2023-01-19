@@ -25,10 +25,7 @@ class Request:
             # funzione che ottiene la lista delle cartelle, sottocartelle e files 
             # presenti nel filesystem
             for file in files: #scorrimento della lista dei files per confronto con estensione richiesta
-                # print("confronto ",self.extension == file[:-4])
-                if file.endswith(self.word): 
-                    print(file)    
-                elif self.word == file[:self.sizeWord]: 
+                if self.word in file: 
                     print(file)
 #creazione dell'istanza della classe e chiamata del metodo view
 req = input("Inserisci l'estensione dei file da ricercare(.ext) ")
