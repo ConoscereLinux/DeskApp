@@ -1,7 +1,5 @@
 """Modulo per la gestione dei metadati dei file."""
 
-"""Modulo per la gestione dei metadati dei file."""
-
 # Standard Import
 import os
 import shutil
@@ -36,14 +34,24 @@ class MetadataManager():
     print(".")
     time.sleep(1)
 
+    # scanned_path = os.chdir("C:/Users/met/Documents/PYTHON/DeskApp/src/util/scannedfolder/") # cartella dove vengono spostante le immagini lette
     home = Path.home()
     scanned_path = Path(home, "Documents", "PYTHON", "DeskApp", "src", "util","scannedfolder")  # cartella dove vengono spostante le immagini lette
+    # listOfScanned = os.listdir(scanned_path)  # legge tutte le immagini presenti
 
-
-    listOfScanned = scanned_path.glob('**/*.jpg')    # legge tutte le immagini presenti
+    # listOfScanned = Path.iterdir(scanned_path)    # legge tutte le immagini presenti
+    # [x for x in scanned_path.iterdir()]
+    listOfScanned = scanned_path.glob('**/*.jpg')
     totalScanned = (len(list(listOfScanned)))
-
-
+    #for x in scanned_path.iterdir():
+       # print(len(list(scanned_path.glob('**/*.jpg'))))
+      #  x = totalScanned
+     # à  print(x)
+    # for photoScanned in scanned_path:
+    #if photoScanned.is_file():
+    #    totalScanned = totalScanned + 1  # numero di foto presenti nella cartella
+    #else:
+    #    totalScanned = 0
     if totalScanned == 0:
         print("Non sono presenti foto nella cartella dei file analizzati")
     elif totalScanned == 1:
@@ -54,14 +62,31 @@ class MetadataManager():
         counter = totalScanned + 1
 
 
+
+    # image_path = os.chdir("C:/Users/met/Documents/PYTHON/DeskApp/src/util/imagefolder")  # posizionarsi nella cartella dove inserire immagini da leggere
     image_path = Path(home, "Documents", "PYTHON", "DeskApp", "src", "util", "imagefolder") # posizionarsi nella cartella dove inserire immagini da leggere
     # listOfImage = os.listdir(image_path)    # legge tutte le immagini presenti
 
+    # listOfImage = Path.iterdir(image_path)  # legge tutte le immagini presenti
+    #for photoImage in Path(image_path).glob('x'): # numero di foto presenti nella cartella
 
-    listOfImage = image_path.glob('**/*.jpg')  # legge tutte le immagini presenti
-    totalImage = (len(list(listOfImage)))      # numero di foto presenti nella cartella
+    # [y for y in image_path.iterdir()]
+    listOfImage = image_path.glob('**/*.jpg')
+    totalImage = (len(list(listOfImage)))
 
 
+    #for y in image_path.iterdir():
+     #   print(len(list(image_path.glob('**/*.jpg'))))
+        #ist(image_path.glob('**/*.jpg'))
+        #y = y + 1
+        #print(y)
+
+    # totalImage = len(listOfImage)     # numero di foto presenti nella cartella
+
+    #    if photoImage.is_file():
+    #        totalImage = totalImage + 1
+    #    else:
+    #        totalImage = 0
 
     if totalImage == 0:
         print("Non sono presenti foto nella cartella dei file da analizzare; attendo inserimento file.")
@@ -77,6 +102,8 @@ class MetadataManager():
         time.sleep(1)
 
 
+
+    # f = open("C:/Users/met/Documents/PYTHON/DeskApp/src/util/doc/Database.txt", 'w')  # apri file txt per salvare tutti i dati estratti
     f = open (Path(home, "Documents", "PYTHON", "DeskApp", "src", "util", "doc", "Database.txt")) # apri file txt per salvare tutti i dati estratti
 
     for name in image_path.glob('**/*.jpg'):
