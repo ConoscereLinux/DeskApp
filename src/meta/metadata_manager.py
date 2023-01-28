@@ -40,12 +40,12 @@ class MetadataManager():
     def scan(self):
         """Esegue la scansione della cartella in cerca dei file"""
         
-        # scansione cartelle per verificare presenza file
+        """ scansione cartella file elaborati per verificare presenza file"""
         print("Verifico presenza foto nelle cartelle.")
         print("Scansione in corso", end="")
 
         self.__listOfScanned = self.__elaborated_folder.glob('**/*.jpg')    # legge tutte le immagini presenti
-        self.__totalScanned = (len(list(self.__listOfScanned)))
+        self.__totalScanned = (len(list(self.__listOfScanned)))           # conta immagini presenti
 
         if self.__totalScanned == 0:
             print("Non sono presenti foto nella cartella dei file analizzati")
@@ -55,13 +55,10 @@ class MetadataManager():
         else:
             print("Sono presenti", self.__totalScanned, "foto nella cartella dei file analizzati.")
             self.__counter = self.__totalScanned + 1
-    
-    
-        # image_path = Path(home, "Documents", "PYTHON", "DeskApp", "src", "util", "imagefolder") # posizionarsi nella cartella dove inserire immagini da leggere
-        # listOfImage = os.listdir(image_path)    # legge tutte le immagini presenti
-    
-    
-        self.__listOfImage = self.__source_folder.glob('**/*.jpg')  # legge tutte le immagini presenti
+
+
+        """ legge tutte le immagini presenti nella cartella di file da elavorare"""
+        self.__listOfImage = self.__source_folder.glob('**/*.jpg')
         self.__totalImage = (len(list(self.__listOfImage)))      # numero di foto presenti nella cartella
     
     
@@ -81,26 +78,26 @@ class MetadataManager():
             time.sleep(1)
     
     
-        f = open(Path(self.__db_folder, DB_FILE_NAME)) # apri file txt per salvare tutti i dati estratti
-    
-        for name in self.__source_folder.glob('**/*.jpg'):
+        f = open(Path(self.__db_folder, DB_FILE_NAME), 'w') # apri file txt per salvare tutti i dati estratti
+
+        for name in self.__source_folder.glob('*.jpg'):
             # standardizzazione/rinomina foto, copia la foto nella cartella scannedfolder e cancella foto nella cartella imagefolder
             z = str("image" + str(self.__counter) + ".jpg")
+            os.chdir(self.__source_folder)
             os.rename(name, z)
             print("Original name: ", name)
             print("Deskapp name: ", z)
             shutil.copy(self.__source_folder.joinpath(z), self.__elaborated_folder)
-            os.remove(self.__source_folder + z)
+            os.remove(self.__source_folder.joinpath(z))
     
             os.chdir(self.__elaborated_folder) # cartella dove vengono spostante le immagini lette
     
     
             with open(z, 'rb') as img_file:
                 img = Image(img_file)
+
     
-            # print(img.has_exif)
-    
-            # List all EXIF tags contained in the image
+            # elenco EXIF tags contenuti nelle immagini
             sorted(img.list_all())
     
     
