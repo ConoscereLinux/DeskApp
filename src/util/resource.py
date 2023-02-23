@@ -21,3 +21,5 @@ class ResourceManager():
     option: om.OptionManager
 
     metadata: mm.MetadataManager
+    
+    
