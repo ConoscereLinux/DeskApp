@@ -8,4 +8,5 @@
 
 
 class OptionManager():
-    pass
+    def __init__(self, argv, path):
+        pass

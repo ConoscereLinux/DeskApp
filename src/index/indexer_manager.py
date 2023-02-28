@@ -8,4 +8,5 @@
 
 
 class IndexerManager():
-    pass
+    def __init__(self, path, option, config, log):
+        pass

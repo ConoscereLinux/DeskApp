@@ -8,4 +8,8 @@
 
 
 class LoggerManager():
-    pass
+    def __init__(self, path, config):
+        pass
+    
+    def info(self, text):
+        print(text)
