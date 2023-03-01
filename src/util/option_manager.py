@@ -5,7 +5,14 @@
 # Site-package Import
 
 # Project Import
+from util import path_manager as pm
 
 
 class OptionManager():
-    pass
+    def __init__(self,
+                 argv: list,
+                 path: pm.PathManager):
+        """
+        Costruttore con già definito un prototipo dei parametri necessari.
+        """
+        pass

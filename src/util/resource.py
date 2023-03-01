@@ -6,8 +6,8 @@ import dataclasses as dc
 # Site-package Import
 
 # Project Import
-from index import indexer_manager as im
 from dig import digger_manager as dm
+from index import indexer_manager as im
 from meta import metadata_manager as mm
 from util import config_manager as cm
 from util import logger_manager as lm
