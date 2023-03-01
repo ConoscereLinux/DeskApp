@@ -1,4 +1,9 @@
-"""Modulo della vera e propria applicazione."""
+"""
+Modulo della vera e propria applicazione e che contiene la funzione 'main'.
+
+Nella funzione 'main', vengono inzializzati i componenti principali
+dell'applicazione e viee lanciata l'interfaccia grafica.
+"""
 
 # Standard Import
 import multiprocessing as mp
@@ -49,10 +54,10 @@ def main(argv: list) -> int:
     log = lm.LoggerManager(path, config)
     
     # Qualche output alla partenza dell'applicazione
-    v = f"{i.__app_name__} v {i.__version__}"
+    v = f"{i.APP_NAME} v {i.VERSION}"
     
     log.info("".join(("-" * 74, " START")))
-    log.info(f"{i.__app_name__}")
+    log.info(f"{i.APP_NAME}")
     log.info(v)
     log.info(f"Running on '{sys.platform}' platform.")
     log.info(f"Processor thread count: {mp.cpu_count()}.")
@@ -79,10 +84,14 @@ def main(argv: list) -> int:
     meta = mm.MetadataManager(source_folder, elaborated_folder, db_folder)
     # -----------------------------------------------------------------END TEMP
     
+    # TODO: sostituire la parte TEMP appena il componente risulterà compatibile
+    #       con il formato corretto, qui di seguito
+    
     # Costruisco il gestore della raccolta dei metadati
     # meta = mm.MetadataManager(path, option, config, log)
     
-    # Costruisco il gestore delle risorse
+    # Costruisco il gestore delle risorse. Questo è un oggetto che contiene i
+    # riferimenti a tutti i componenti principali dell'applicazione
     resources = r.ResourceManager(path,
                                   option,
                                   config,
@@ -91,14 +100,24 @@ def main(argv: list) -> int:
                                   digger,
                                   meta)
     
+    # QApplication implementa QGuiApplication con alcune funzionalità necessarie
+    # per le applicazioni basate su QWidget. Gestisce l'inizializzazione e la
+    # finalizzazione specifiche del widget.
+    # Ci può essere una ed una sola QApplication, indipendentemente dal numero
+    # di finestre.
     app = QtWidgets.QApplication([])
     
-    mwindow = mw.MainBase(resources, i.__app_name__)
+    # Creo la finestra principale
+    mwindow = mw.MainBase(resources, i.APP_NAME)
     
+    # Se la creazione è andata a buon fine
     if(mwindow):
+        # Mando in esecuzione il processo principale dell'applicazione
         result = app.exec_()
     
     else:
-        result = 1
+        # Mi segno che c'è stato un erroe
+        result = APP_ERROR
     
+    # chiudo il programma, restituendo l'eventuale codice di errore
     sys.exit(result)

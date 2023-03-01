@@ -18,7 +18,9 @@ S_PATH = 'path'
 class ConfigManager(configparser.ConfigParser):
     """Classe per gestire le configurazioni iniziali dell'applicazione."""
     
-    def __init__(self, path: pm.PathManager, option: om.OptionManager):
+    def __init__(self,
+                 path: pm.PathManager,
+                 option: om.OptionManager):
         """
         Il costruttore della classe.
         

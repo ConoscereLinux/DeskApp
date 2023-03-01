@@ -17,10 +17,10 @@ def camel_case_split(camel_text):
     return " ".join([m.group(0) for m in matches])
 
 
-__company_name_folder__ = "ConoscereLinux"
-__app_name_folder__ = "DeskApp"
-__version__ = "0.0.1"
-__company_name__ = camel_case_split(__company_name_folder__)
-__app_description__ ="Utility per la gestione e la indicizzazione di file."
-__copyright__ = "ConoscereLinux. Tutti i diritti sono riservati."
-__app_name__ = camel_case_split(__app_name_folder__)
+COMPANY_NAME_FOLDER = "ConoscereLinux"
+APP_NAME_FOLDER = "DeskApp"
+VERSION = "0.0.1"
+COMPANY_NAME = camel_case_split(COMPANY_NAME_FOLDER)
+APP_DESCRIPTION ="Utility per la gestione e la indicizzazione di file."
+COPYRIGHT = "ConoscereLinux. Tutti i diritti sono riservati."
+APP_NAME = camel_case_split(APP_NAME_FOLDER)
