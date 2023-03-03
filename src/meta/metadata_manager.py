@@ -10,7 +10,6 @@ from pathlib import Path
 
 # Project Import
 from exif import Image  #libreria python per lettura metadati immagini
-from asyncio.tasks import sleep
 
 
 DB_FILE_NAME = "database.txt"
@@ -163,6 +162,10 @@ class MetadataManager():
     
     
         f.close()
+
+#    def scanfile(self, origin_file, elaborated_file, move):
+#        metadati = []
+#        return metadati
 
 if(__name__ == "__main__"):
     import sys
