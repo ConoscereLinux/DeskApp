@@ -7,28 +7,24 @@ import os
 # Site-package Import
 
 # Project Import
-import argparse
 
 class OptionManager():
-    def __init__(self, word): 
-        self.word = word
-        self.sizeWord = len(self.word)
-
+    def __init__ (self, chiave):
+        self.key = chiave
+    
     """definizione di un metodo che visualizza i file presenti nella directory"""
     def view(self):
         os.chdir("Source") # ci si sposta nella cartella 'Source'
+        # funzione che ottiene la lista delle cartelle, sottocartelle e files 
+        # presenti nel filesystem
         for cartelle, sottocartelle, files in os.walk(os.getcwd()):
-            # funzione che ottiene la lista delle cartelle, sottocartelle e files 
-            # presenti nel filesystem
-            for file in files: #scorrimento della lista dei files per confronto con estensione richies 
-                if self.word in file: 
+            for file in files: #scorrimento della lista dei files per confronto con estensione richiesta
+                # poiché self.key è una lista e non può essere inserita come confronto 
+                # si utilizza la seconda stringa che è la stringa da ricercare
+                if self.key[1] in file: 
                     print(file)
-# implementazione della funzionalità passaggio parametri con la funzione 'argparse'
-parser = argparse.ArgumentParser(description='funzione che permette la ricerca dei file a riga di comando')                    
-parser.add_argument("req", type=str, help="inserisci una stringa per cercare il file")
-args = parser.parse_args()
+
 # creazione dell'istanza della classe e chiamata del metodo view
-# req = input("Inserisci l'estensione dei file da ricercare(.ext) ")
 if(__name__ == "__main__"):
-    objExt = OptionManager(args.req) #creazione di un istanza della classe Request
+    objExt = OptionManager(sys.argv) #creazione di un istanza della classe Request
     objExt.view() # chiamata del metodo di visualizzazione dei file nel filesystem
