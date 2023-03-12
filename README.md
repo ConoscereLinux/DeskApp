@@ -4,7 +4,7 @@
 
 # Ambiente di sviluppo
 
-Per poter lavorare al progetto, occorre preparare un ambiente di sviuluppo, e per farlo utilizzeremo una *virtualenv* usando Miniconda.
+Per poter lavorare al progetto, occorre preparare un ambiente di sviluppo, e per farlo utilizzeremo una *virtualenv* usando Miniconda.
 
 ## Miniconda
 
