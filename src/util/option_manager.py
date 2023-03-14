@@ -20,12 +20,12 @@ class OptionManager():
         Costruttore con gia definito un prototipo dei parametri necessari.
         """
         
-        def view(self):
-            os.chdir("Source")
-            for cartelle, sottocartelle, files in os.walk(os.getcwd()):
-                for file in files:
-                    if self.key[1] in file:
-                        print(file)
+    def view(self):
+        os.chdir("Source")
+        for cartelle, sottocartelle, files in os.walk(os.getcwd()):
+            for file in files:
+                if self.key[1] in file:
+                    print(file)
 
 
 if __name__ == "__main__":
