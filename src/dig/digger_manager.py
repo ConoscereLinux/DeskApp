@@ -60,7 +60,7 @@ class DiggerManager():
         self.__index = index
         self.__meta = meta
         
-        self.__dirPath = self.__config["percorso"]
+        self.__dirPath = self.__config["path"]["source_folder"]
         self.__files = {}
     
     #Decorators Approach 

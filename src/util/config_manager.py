@@ -28,8 +28,10 @@ class ConfigManager(configparser.ConfigParser):
             option (OptionManager): il gestore delle configurazionida riga di
                 comando.
         """
-        super().__init__(
-            interpolation = configparser.ExtendedInterpolation)
+        super().__init__()
+            # interpolation = configparser.ExtendedInterpolation)
             # default_sction = S_DEFAULT)
+            
+        self.read(path.config_path)
         
         
