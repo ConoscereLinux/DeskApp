@@ -45,3 +45,16 @@ pip install -r requirements.txt
 > ```bash
 > pip freeze > requirements.txt
 > ```
+
+## Configurazione
+
+Per poter utilizzare l'applicazione, serve un file di configurazione che, di default, si deve chiamare `DeskApp.ini` all'interno della cartella `src`.
+
+C'è un template per il file che si chiama `DeskApp-template.ini`, quindi occorre copiarlo e compilarlo in base alla necessità. All'interno del file ci sono ommenti sui vari parametri.
+
+```bash
+cd src
+cp DeskApp-template.ini DeskApp.ini
+```
+
+In seguito editarlo con l'editor prefeito.
