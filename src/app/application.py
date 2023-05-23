@@ -51,7 +51,8 @@ def main(argv: list) -> int:
     config = cm.ConfigManager(path, option)
     
     # Costruisco il gestore dei log
-    log = lm.LoggerManager(path, config)
+    # log = lm.LoggerManager(path, config)
+    log = lm.LoggerManager("DeskApp")
     
     # Qualche output alla partenza dell'applicazione
     v = f"{i.APP_NAME} v {i.VERSION}"
@@ -66,9 +67,6 @@ def main(argv: list) -> int:
     # Costruisco il gestore delle indicizzazioni
     indexer = im.IndexerManager(path, option, config, log)
     
-    # Costruisco il gestore delle ricerche dei file
-    digger = dm.DiggerManager(path, option, config, log)
-    
     # TEMP --------------------------------------------------------------------
     # IMPLEMENTATO TEMPORANEMENTE DURANTE L'INTEGRAZIONE
     actual_path = Path(sys.path[0])
@@ -81,8 +79,12 @@ def main(argv: list) -> int:
     db_folder = Path(actual_path.parent.parent,
                          'tests', 'data')
     
-    meta = mm.MetadataManager(source_folder, elaborated_folder, db_folder)
+    meta = mm.MetadataManager(source_folder) #, elaborated_folder, db_folder)
+    
     # -----------------------------------------------------------------END TEMP
+    
+    # Costruisco il gestore delle ricerche dei file
+    digger = dm.DiggerManager(path, option, config, log, indexer, meta)
     
     # TODO: sostituire la parte TEMP appena il componente risulterà compatibile
     #       con il formato corretto, qui di seguito
