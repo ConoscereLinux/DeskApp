@@ -3,9 +3,7 @@
 # Standard Import
 import os
 from hashlib import md5
-
-
-
+from dataclasses import dataclass as dc, field
 # Site-package Import
 
 # Project Import
@@ -15,6 +13,19 @@ from util import option_manager as om
 from util import path_manager as pm
 from meta import metadata_manager as mm
 from index import indexer_manager as im
+
+@dc
+class File:
+    """contiene gli attributi principali del file e calcola md5"""
+    name: str
+    path: os.path
+    size: int
+    hash: bytes = field(init=False)
+
+    def __post_init__(self):
+        with os.open(self.path, mode='rb') as file:
+            self.hash = md5(file).digest()
+
 
 class DiggerManager():
     """Recupera i files nelle cartelle e manda i dati al DB.
@@ -53,7 +64,6 @@ class DiggerManager():
         self.__log = log
         self.__index = index
         self.__meta = meta
-        
         self.__dirPath = self.__config["path"]["source_folder"]
         self.__files = {}
     
@@ -64,10 +74,11 @@ class DiggerManager():
         with os.scandir(self.__dirPath) as dir:
             for item in dir:
                 print(item) #mandare al log
-                self.__files[f'{item.name}'] = item.path
+
+
 
     def __resolveMd5():
-        pass
+        md5()
 
     def __checkIndex():
         """richiama il servizio indexer per controllare se il file è già
@@ -85,7 +96,7 @@ class DiggerManager():
 
 def main():
     """TEST"""
-    test = DiggerManager(path=None, option=None, config=CONFIG, log=LOG)
+    test = DiggerManager(path=None, option=None)
     folder = test.get_reperti()
     
     print(folder)
