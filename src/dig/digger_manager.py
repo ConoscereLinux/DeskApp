@@ -2,7 +2,8 @@
 
 # Standard Import
 import os
-import hashlib
+from hashlib import md5
+
 
 
 # Site-package Import
@@ -57,16 +58,13 @@ class DiggerManager():
         self.__files = {}
     
 
-    def __scan(self) -> os.DirEntry:
+    def __scan(self) -> None:
         """invoca os.scandir 
         torna l'iteratore"""
         with os.scandir(self.__dirPath) as dir:
             for item in dir:
-                print(item)
-    
-    def __dig(self, entry:os.DirEntry):
-        """Prende il risultato di scan """
-        pass
+                print(item) #mandare al log
+                self.__files[f'{item.name}'] = item.path
 
     def __resolveMd5():
         pass
@@ -86,17 +84,7 @@ class DiggerManager():
 ############################### Test ##########################################
 
 def main():
-    ########################### Costanti per il debug #########################
-    CONFIG = {
-        "percorso": "/home/pg/"
-        }
-    LOG = []
-
-    OPTION = {
-        "ricorsivo" : False
-        }
-    ###########################################################################
-    
+    """TEST"""
     test = DiggerManager(path=None, option=None, config=CONFIG, log=LOG)
     folder = test.get_reperti()
     
