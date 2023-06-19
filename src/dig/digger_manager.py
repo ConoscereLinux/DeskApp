@@ -14,17 +14,6 @@ from util import path_manager as pm
 from meta import metadata_manager as mm
 from index import indexer_manager as im
 
-@dc
-class File:
-    """contiene gli attributi principali del file e calcola md5"""
-    name: str
-    path: os.path
-    size: int
-    hash: bytes = field(init=False)
-
-    def __post_init__(self):
-        with os.open(self.path, mode='rb') as file:
-            self.hash = md5(file).digest()
 
 
 class DiggerManager():
@@ -65,46 +54,74 @@ class DiggerManager():
         self.__index = index
         self.__meta = meta
         self.__dirPath = self.__config["path"]["source_folder"]
-        self.__files = {}
-    
-
-    def __scan(self) -> None:
-        """invoca os.scandir 
-        torna l'iteratore"""
-        with os.scandir(self.__dirPath) as dir:
-            for item in dir:
-                print(item) #mandare al log
 
 
+    def scan(self, path=None) -> None:
+        """scansiona il percorso passato come parametro o quello nel config"""
+        if(path == None):
+            path = self.__path
+        with os.scandir(path) as el:
+            for i in el:
+                if (i.is_file()):
+                    self.log.info(f'File esaminato {i.path}')
+                    
+                    #calcolo dell'hash 
+                    h = self.__resolve_checksum(i.path)
+                    #aggiorna o inserisce in index
+                    self.__update_index(i.path, h)
 
-    def __resolveMd5():
-        md5()
-
-    def __checkIndex():
-        """richiama il servizio indexer per controllare se il file è già
-        catalogato e aggiornato sul database"""
-        pass
-
-    def update():
-        """Public method, richiama gli altri metodi in successione."""
-        pass
+                #chiamata ricorsiva per le cartelle
+                elif(i.is_dir()):
+                    self.scan(path=i.path)
 
 
+    def __resolve_checksum(self, path, type='md5') -> bytes:
+        """calcola il checksum del file al percorso indicato
+        
+        da implementare la possibilità di usare altro algoritmo di hashing
+        Return:
+            binario che rappresenta il checksum (MD5)
+        """
+        try:
+            with open(path, 'rb') as file:
+                file_hash = md5(file.read())
+                print(f'updated md5 {file_hash.digest()}')
+                return file_hash.digest()
+        except Exception as err:
+            self.log.error(err)
+
+    def __update_index(self, path, hash_bin) -> None:
+        """cerca se il file è presente nel db e controlla il suo checksum
+        se non presente lo inserisce"""
+
+        """da implementare chiamate ai metodi di index"""
+        if(self.__alredy_indexed(path)):
+            print('controlla checksum e aggiorna')
+            print(f'hash da confrontare {hash_bin}')
+        else:
+            print('inserisci nel db')
+
+    def __alredy_indexed(self, path) -> bool:
+        """interroga index, torna True se il file è già indicizzato, altrimenti False"""
+
+        """da implementare chiamate ai metodi di index"""
+        print(self.index)
+        return True
 
 
 ############################### Test ##########################################
 
-def main():
-    """TEST"""
-    test = DiggerManager(path=None, option=None)
-    folder = test.get_reperti()
-    
-    print(folder)
-
-    for files in folder:
-        print(f"{files} -> {folder[files]} \n")
-
 if __name__ == "__main__":
-    main()
+    percorsi = pm.PathManager()
+    optn = om.OptionManager([], percorsi)
+    conf = cm.ConfigManager(percorsi,optn)
+    test_log = lm.LoggerManager(__name__)
+    db = im.IndexerManager(percorsi, optn, conf, test_log)
+    info = mm.MetadataManager('../../tests/database.txt')
+    
+    test = DiggerManager(percorsi, optn, conf, test_log, db, info)
+    test.scan()
+
+
 
 ###############################################################################
