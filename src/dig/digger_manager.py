@@ -59,11 +59,12 @@ class DiggerManager():
     def scan(self, path=None) -> None:
         """scansiona il percorso passato come parametro o quello nel config"""
         if(path == None):
-            path = self.__path
+            path = self.__dirPath
+            
         with os.scandir(path) as el:
             for i in el:
                 if (i.is_file()):
-                    self.log.info(f'File esaminato {i.path}')
+                    self.__log.info(f'File esaminato {i.path}')
                     
                     #calcolo dell'hash 
                     h = self.__resolve_checksum(i.path)
@@ -105,7 +106,7 @@ class DiggerManager():
         """interroga index, torna True se il file è già indicizzato, altrimenti False"""
 
         """da implementare chiamate ai metodi di index"""
-        print(self.index)
+        print("__alredy_indexed")
         return True
 
 
