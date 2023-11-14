@@ -5,9 +5,12 @@
 # Site-package Import
 from PySide6 import QtWidgets
 from PySide6 import QtGui
+from PySide6 import QtCore
 
 # Local Import
 from util import resource as r
+from pickle import TRUE
+from PySide6.QtCore import Slot
 
 
 class MainBase(QtWidgets.QMainWindow):
@@ -63,6 +66,12 @@ class MainBase(QtWidgets.QMainWindow):
         self.__tab = QtWidgets.QTabWidget()
         self.__layout.addWidget(self.__tab)
         
+        self.__timer = QtCore.QTimer()
+        self.__timer.timeout.connect(self.__timer__timeout)
+        self.__timer.setInterval(1000)
+        self.__timer.setSingleShot(True)
+        self.__timer.start()
+        
         self.__center()
 
     def __center(self,
@@ -83,3 +92,12 @@ class MainBase(QtWidgets.QMainWindow):
         if(maximized):
             self.showMaximized()
      
+    # @Slot
+    def __timer__timeout(self):
+        """Usato per gestire in maniera simile al Thread la chiamat al Digger."""
+        
+        self.__app.digger.scan()
+        
+        self.__timer.setInterval(5000)
+        self.__timer.start()
+    
