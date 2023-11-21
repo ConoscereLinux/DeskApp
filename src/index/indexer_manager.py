@@ -20,4 +20,30 @@ class IndexerManager():
         """
         Costruttore con già definito un prototipo dei parametri necessari.
         """
-        pass
+        self.__path = path
+        self.__option = option
+        self.__config = config
+        self.__log = log
+
+    def update_index(self,
+                     file_path: str,
+                     content_hash: str,
+                     meta_data: dict,) -> None:
+        """
+        Si occupa di registrare nel db il file con i suoi metadati.
+        
+        Args:
+            file_path: il percorso del file da indicizzare
+            content_hash: l'hash calcolato del contenuto del file
+            meta_data: il dizionario di metadati del file
+            
+        """
+        
+        self.__log.info(file_path)
+    
+    def is_already_indexed(self, file_path: str) -> bool:
+        """
+        Cerca il 'file_path' nel database e restituisce se l'ha trovato.
+        """
+        
+        return False
