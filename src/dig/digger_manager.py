@@ -63,24 +63,26 @@ class DiggerManager():
 
         with os.scandir(path) as el:
             for i in el:
-                try:
-                    open(i, 'r')
-                except PermissionError:
-                    self.__log.error(f"Permesso negato in lettura per il file {i.path}")
 
                 if i.is_file():
-                    self.__log.info(f"File esaminato {i.path}")
+                    try:
+                        open(i, 'r')
+                        self.__log.info(f"File esaminato {i.path}")
 
-                    # calcolo dell'hash
-                    h = self.__resolve_checksum(i.path)
-                    self.__log.info(f"Hash: {h}")
+                        # calcolo dell'hash
+                        h = self.__resolve_checksum(i.path)
+                        self.__log.info(f"Hash: {h}")
 
-                    # recupera i metadati
-                    m = self.__meta.scan_file(i.path)
-                    self.__log.info(f"Metadata: {m}")
+                        # recupera i metadati
+                        m = self.__meta.scan_file(i.path)
+                        self.__log.info(f"Metadata: {m}")
 
-                    # aggiorna o inserisce in index
-                    self.__index.update_index(i.path, str(h), m)
+                        # aggiorna o inserisce in index
+                        self.__index.update_index(i.path, str(h), m)
+
+                    except PermissionError:
+                        self.__log.error(f"Permesso negato in lettura per il file {i.path}")
+
 
                 # chiamata ricorsiva per le cartelle
                 elif i.is_dir():
