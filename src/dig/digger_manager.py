@@ -53,17 +53,8 @@ class DiggerManager():
         self.__meta = meta
         self.__dirPath = self.__config["path"]["source_folder"]
 
-        # verifico di poter leggere la cartella sorgente
-        try:
-            open(self.__dirPath, 'r')
-        except PermissionError:
-            self.__log.error(
-                f"Permesso di lettura negato per la cartella {self.__dirPath}"
-            )
-        except FileNotFoundError as err:
-            self.__log.error(
-                f"{err} Controllare la configurazione cartella sorgente"
-            )
+        if not os.path.isdir(self.__dirPath):
+            self.__log.error(f"{self.__dirPath} non è un percorso di una cartella del sistema")
 
     def scan(self, path=None) -> None:
         """scansiona il percorso passato come parametro o quello nel config"""
@@ -72,6 +63,11 @@ class DiggerManager():
 
         with os.scandir(path) as el:
             for i in el:
+                try:
+                    open(i, 'r')
+                except PermissionError:
+                    self.__log.error(f"Permesso negato in lettura per il file {i.path}")
+
                 if i.is_file():
                     self.__log.info(f"File esaminato {i.path}")
 
