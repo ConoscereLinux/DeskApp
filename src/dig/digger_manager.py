@@ -15,11 +15,11 @@ from index import indexer_manager as im
 
 
 class DiggerManager():
-    """Recupera i file nelle cartelle e manda i dati al DB.
+    """Recupera i file nelle cartelle.
 
-    Apre i file nelle cartelle selezionate, quando rileva un nuovo
-    file o una modifica, recupera i nuovi metadata usnado metadata_manager
-    e manda al database con index_manager.
+    Apre i file nelle cartelle selezionate,
+    interpella metadata_manager per ottenere i metadati del file
+    quindi manda hash e metadata al database con index_manager.
 
 
 
@@ -52,6 +52,7 @@ class DiggerManager():
         self.__index = index
         self.__meta = meta
         self.__dirPath = self.__config["path"]["source_folder"]
+
         # verifico di poter leggere la cartella sorgente
         try:
             open(self.__dirPath, 'r')
