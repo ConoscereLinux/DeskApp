@@ -1,0 +1,14 @@
+Make: HUAWEI
+Model: POT-LX1T
+Software: POT-LX1T 10.0.0.166(C431E3R2P3)
+Artist: None
+DateTime (Original): 2020:04:01 10:51:54
+Flash Details: Flash(flash_fired=False, flash_return=FlashReturn.NO_STROBE_RETURN_DETECTION_FUNCTION, flash_mode=FlashMode.UNKNOWN, flash_function_not_present=False, red_eye_reduction_supported=False, reserved=0)
+ Longitude data: None
+ latitude data: None
+ Longitude data reference : None
+ latitude data reference : None
+Larghezza: 3968
+Altezza: 2976
+Risoluzione: 72.0
+Dimensione file (in byte): 3419653
