@@ -66,31 +66,12 @@ def main(argv: list) -> int:
     
     # Costruisco il gestore delle indicizzazioni
     indexer = im.IndexerManager(path, option, config, log)
-    
-    # TEMP --------------------------------------------------------------------
-    # IMPLEMENTATO TEMPORANEMENTE DURANTE L'INTEGRAZIONE
-    actual_path = Path(sys.path[0])
-    source_folder = Path(actual_path.parent.parent,
-                         'tests', 'data', 'source_folder')
-    
-    elaborated_folder = Path(actual_path.parent.parent,
-                         'tests', 'data', 'elaborated_folder')
-    
-    db_folder = Path(actual_path.parent.parent,
-                         'tests', 'data')
-    
-    meta = mm.MetadataManager(source_folder) #, elaborated_folder, db_folder)
-    
-    # -----------------------------------------------------------------END TEMP
+
+    # Costruisco il gestore dei metadati    
+    meta = mm.MetadataManager(path, option, config, log)
     
     # Costruisco il gestore delle ricerche dei file
     digger = dm.DiggerManager(path, option, config, log, indexer, meta)
-    
-    # TODO: sostituire la parte TEMP appena il componente risulterà compatibile
-    #       con il formato corretto, qui di seguito
-    
-    # Costruisco il gestore della raccolta dei metadati
-    # meta = mm.MetadataManager(path, option, config, log)
     
     # Costruisco il gestore delle risorse. Questo è un oggetto che contiene i
     # riferimenti a tutti i componenti principali dell'applicazione
